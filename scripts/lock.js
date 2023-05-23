@@ -4,9 +4,41 @@
 // You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
+
+// import {
+//   LotteryToken__factory,
+//   Lottery__factory,
+//   Lottery,
+//   LotteryToken,
+// } from "../typechain-types";
+
+//const wallet = hre.ethers;
+
 const hre = require("hardhat");
+const { ethers } = require("hardhat");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 async function main() {
+  const provider = new ethers.providers.InfuraProvider(
+    "sepolia",
+    process.env.INFURA_API_KEY_SEPOLIA
+  );
+
+  // Get the private key from the environment variable
+  const privateKey = process.env.PRIVATE_KEY;
+  if (!privateKey || privateKey.length <= 0) {
+    throw new Error("Private key missing");
+  }
+
+  //Connect to the wallet
+  const wallet = new ethers.Wallet(privateKey);
+  console.log("Connected to the wallet address", wallet.address);
+  signer = wallet.connect(provider);
+  //signer = (await ethers.getSigners())[0];
+  console.log("The signer is", signer.address);
+
   const currentTimestampInSeconds = Math.round(Date.now() / 1000);
   const unlockTime = currentTimestampInSeconds + 60;
 

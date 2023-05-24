@@ -7,6 +7,9 @@
   "dependencies": {
     "@chainlink/contracts": "^0.6.1",
     "@chainlink/hardhat-chainlink": "^0.0.2",
-    "@typechain/ethers-v5": "^10.2.1"
+    "@openzeppelin/contracts": "^4.8.3",
+    "@typechain/ethers-v5": "^10.2.1",
+    "@uniswap/v3-core": "^1.0.1",
+    "@uniswap/v3-periphery": "^1.4.3"
   }
 }
